@@ -26,7 +26,6 @@ require_once 'views/header.admin.view.php';
                 </div>
                 <div class="form-group">
                   <input type="hidden" name="type" value="createRegion">
-                  <input type="hidden" name="id" value="<?php echo (int)$_GET['id']; ?>">
                   <div class="col-sm-offset-3 col-sm-6">
                     <button type="submit" class="btn btn-primary btn-block">Create Region</button>
                   </div>

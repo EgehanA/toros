@@ -66,12 +66,23 @@
             data: $(this).serialize()
           })
           .done(function(result){
-            swal({
-              title: result.t,
-              text: result.m,
-              icon: result.s,
-              button: "OK",
-            });
+            var options = {
+              title:    result.t,
+              text:     result.m,
+              icon:     result.s,
+              button:  "OK"
+            };
+            if(result.r != null){
+              options['timer']   = 3000;
+              options['button']  = false;
+              options['closeOnClickOutside ']   = false;
+              options['closeOnEsc']             = false;
+              setTimeout(function(){
+                window.location.assign(result.r);
+              }, 3000);
+            }
+            swal(options);
+			
           })
           .fail(function() {
             swal("Oh noes!", "The request failed! Please, try again.", "error");

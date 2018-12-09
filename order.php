@@ -132,6 +132,7 @@ require_once 'views/header.view.php';
   </div>
 </div>
 <?php
+// EOT, HEREDOC değişken tanımlama
 $appendFooter = <<<BERK
 <script type="text/javascript">
     $(document).ready(function(){

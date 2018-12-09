@@ -22,11 +22,11 @@ require_once 'views/header.admin.view.php';
                     <th width="10%">&nbsp;</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody> 
                   <?php
-                    $db->where('del', '0');
+                    $db->where('del', '0'); // WHERE del = 0 silenen kayıtları görmemesi için 
                     $db->orderBy('id', 'DESC');
-                    $products = $db->get('products');
+                    $products = $db->get('products'); // SELECT * FROM products WHERE del = 0 ORDER BY id DESC
                     if(count($products) > 0)
                     {
                       foreach ($products as $k => $v)
@@ -35,7 +35,7 @@ require_once 'views/header.admin.view.php';
                         <tr class="'.(($v['stock'] <= 0)?'danger':null).' '.(($k % 2 == 0)?'even':'odd').' gradeX">
                           <td>'.$v['id'].'</td>
                           <td>'.$v['name'].'</td>
-                          <td>'.number_format($v['price'],2).' TRY</td>
+                          <td>'.number_format($v['price'],2).' TRY</td> <!--1000 => 1.000,00-->
                           <td>'.$v['stock'].' Unit</td>
                           <td>'.((empty($v['updated_at']))?'-':date('F d,Y H:i:s', strtotime($v['updated_at']))).'</td>
                           <td class="text-center">

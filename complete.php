@@ -38,6 +38,13 @@ if(isset($_POST['ordercomplete']))
     $db->insertMulti('orderdetails', $dataDetail);
     if($oid > 0)
     {
+		foreach($dataDetail as $k => $v)
+		{
+			$db->where('id', $v['pid']); // WHERE id = pid
+			$db->update('products', [
+				'stock'	=>	$db->dec($v['number'])
+			]); 
+		}
       header('Location: complete.php?status=1');
     }
   }

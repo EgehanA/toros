@@ -35,14 +35,14 @@
             else
             {
               $data = [
-                  'username'    =>  $db->escape($_POST['username']),
+                  'username'    =>  $db->escape($_POST['username']), //sql injection burada engelleniyor
                   'adress'      =>  $db->escape($_POST['adress']),
                   'created_at'  =>  $db->now()
               ];
               $uid = $db->insert('customers', $data);
               if($uid > 0)
               {
-                $output = ['t'=>'Customer Number is '.$uid,'m'=>'Succesfully created customer account. Please keep your customer number for login.', 's'=>'success'];
+                $output = ['t'=>'Customer Number is '.$uid,'m'=>'Succesfully created customer account. Please keep your customer number for login.', 's'=>'success', 'r'=>'login-terminal.php'];
               }
               else
               {
@@ -162,8 +162,8 @@
         $tables = ['products', 'regions', 'customers', 'orders'];
         if(in_array($_POST['table'], $tables))
         {
-          $db->where('id', $db->escape($_POST['id']));
-          if($db->update($_POST['table'], ['del'=>'1']))
+          $db->where('id', $db->escape($_POST['id'])); //WHERE id = $_POST['id']
+          if($db->update($_POST['table'], ['del'=>'1'])) // UPDATE $_POST['table'] SET del = '1' WHERE id = $_POST['id']
           {
             $output = ['t'=>'Succesfull!','m'=>'Data is deleted.', 's'=>'success'];
           }
